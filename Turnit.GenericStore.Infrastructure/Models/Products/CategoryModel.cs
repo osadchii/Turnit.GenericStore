@@ -1,4 +1,4 @@
-namespace Turnit.GenericStore.Infrastructure.Dtos;
+namespace Turnit.GenericStore.Infrastructure.Models.Products;
 
 public class CategoryModel
 {
