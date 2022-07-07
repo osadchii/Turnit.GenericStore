@@ -5,9 +5,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY Turnit.GenericStore.Api.csproj Turnit.GenericStore.Api/
+COPY . .
 RUN dotnet restore "Turnit.GenericStore.Api/Turnit.GenericStore.Api.csproj"
-COPY . ./Turnit.GenericStore.Api/
 WORKDIR "/src/Turnit.GenericStore.Api"
 RUN dotnet build "Turnit.GenericStore.Api.csproj" -c Release -o /app/build
 

@@ -11,8 +11,8 @@ public static class DependencyInjection
 {
     public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped(CreateSessionFactory);
-        services.AddScoped<ISession>(sp => sp.GetRequiredService<ISessionFactory>().OpenSession());
+        services.AddSingleton(CreateSessionFactory);
+        services.AddTransient(sp => sp.GetRequiredService<ISessionFactory>().OpenSession());
         
         ISessionFactory CreateSessionFactory(IServiceProvider context)
         {
