@@ -1,6 +1,4 @@
-using System;
-
-namespace Turnit.GenericStore.Api.Features.Sales;
+namespace Turnit.GenericStore.Infrastructure.Dtos;
 
 public class CategoryModel
 {

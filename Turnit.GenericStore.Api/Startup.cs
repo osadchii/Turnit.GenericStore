@@ -1,13 +1,11 @@
-using System;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using NHibernate;
+using Turnit.GenericStore.Infrastructure.Database;
+using Turnit.GenericStore.Infrastructure.Mediatr;
 
 namespace Turnit.GenericStore.Api
 {
@@ -18,36 +16,20 @@ namespace Turnit.GenericStore.Api
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddScoped(CreateSessionFactory);
-            services.AddScoped<ISession>(sp => sp.GetRequiredService<ISessionFactory>().OpenSession());
+            services.AddDatabase(Configuration);
+            services.AddMediatr();
             
             services.AddSwaggerGen(x => x.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "v1",
                 Title = "Turnit Store"
             }));
-        }
-        
-        private ISessionFactory CreateSessionFactory(IServiceProvider context)
-        {
-            var connectionString = Configuration.GetConnectionString("Default");
-            var configuration = Fluently.Configure()
-                .Database(PostgreSQLConfiguration.PostgreSQL82
-                    .Dialect<NHibernate.Dialect.PostgreSQL82Dialect>()
-                    .ConnectionString(connectionString))
-                .Mappings(x =>
-                {
-                    x.FluentMappings.AddFromAssemblyOf<Startup>();
-                });
-
-            return configuration.BuildSessionFactory();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

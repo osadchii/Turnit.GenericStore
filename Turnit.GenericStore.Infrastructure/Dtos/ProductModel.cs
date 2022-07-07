@@ -1,6 +1,4 @@
-using System;
-
-namespace Turnit.GenericStore.Api.Features.Sales;
+namespace Turnit.GenericStore.Infrastructure.Dtos;
 
 public class ProductModel
 {
@@ -8,7 +6,7 @@ public class ProductModel
 
     public string Name { get; set; }
 
-    public AvailabilityModel[] Availability { get; set; }
+    public IEnumerable<AvailabilityModel> Availability { get; set; }
     
     public class AvailabilityModel
     {
@@ -22,5 +20,5 @@ public class ProductCategoryModel
 {
     public Guid? CategoryId { get; set; }
 
-    public ProductModel[] Products { get; set; }
+    public IEnumerable<ProductModel> Products { get; set; }
 }
