@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Turnit.GenericStore.Infrastructure.Dtos;
 using Turnit.GenericStore.Infrastructure.Mediatr.Categories.Queries;
+using Turnit.GenericStore.Infrastructure.Models.Products;
 
 namespace Turnit.GenericStore.Api.Features.Sales;
 

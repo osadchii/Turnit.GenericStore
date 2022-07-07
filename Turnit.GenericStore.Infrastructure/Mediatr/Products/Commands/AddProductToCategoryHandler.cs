@@ -4,8 +4,8 @@ using MediatR;
 using NHibernate;
 using NHibernate.Linq;
 using Turnit.GenericStore.Infrastructure.Database.Entities;
-using Turnit.GenericStore.Infrastructure.Dtos;
 using Turnit.GenericStore.Infrastructure.Mediatr.Products.Queries;
+using Turnit.GenericStore.Infrastructure.Models.Products;
 
 namespace Turnit.GenericStore.Infrastructure.Mediatr.Products.Commands;
 
@@ -63,7 +63,7 @@ public class AddProductToCategoryHandler : IRequestHandler<AddProductToCategoryR
 
             await transaction.CommitAsync(cancellationToken);
         }
-        catch (Exception ex)
+        catch
         {
             await transaction.RollbackAsync(cancellationToken);
             throw;

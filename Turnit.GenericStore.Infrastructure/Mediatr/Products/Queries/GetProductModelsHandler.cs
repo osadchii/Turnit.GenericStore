@@ -2,7 +2,7 @@
 using NHibernate;
 using NHibernate.Linq;
 using Turnit.GenericStore.Infrastructure.Database.Entities;
-using Turnit.GenericStore.Infrastructure.Dtos;
+using Turnit.GenericStore.Infrastructure.Models.Products;
 
 namespace Turnit.GenericStore.Infrastructure.Mediatr.Products.Queries;
 
